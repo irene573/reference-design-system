@@ -4,13 +4,16 @@ A static HTML/CSS design system for citation and reference UI: inline markers, f
 
 ## Quick start
 
-Open `index.html` in a browser, or serve the folder locally:
+**Live preview (no setup):** [https://irene573.github.io/reference-design-system/](https://irene573.github.io/reference-design-system/)
+
+**Local preview:** the site is plain static files. Either open `index.html` in a browser, or start a server in this folder (the URL only works while the command is running):
 
 ```bash
-python3 -m http.server 8080
+cd reference-design-system
+python3 -m http.server 8765
 ```
 
-Then visit `http://localhost:8080`.
+Then visit [http://127.0.0.1:8765/](http://127.0.0.1:8765/) (use `127.0.0.1` if `localhost` fails).
 
 ## Structure
 
