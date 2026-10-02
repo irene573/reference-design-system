@@ -1,0 +1,337 @@
+/* ——— Inline citation ——— */
+.ref-cite {
+  display: inline;
+  font-size: var(--ref-cite-size);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  vertical-align: baseline;
+  color: var(--ref-color-accent-ink);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.ref-cite--superscript {
+  vertical-align: super;
+  line-height: 0;
+}
+
+.ref-cite--bracket::before {
+  content: "[";
+  font-weight: 500;
+  opacity: 0.85;
+}
+
+.ref-cite--bracket::after {
+  content: "]";
+  font-weight: 500;
+  opacity: 0.85;
+}
+
+.ref-cite:hover,
+.ref-cite:focus-visible {
+  color: var(--ref-color-accent-hover);
+  text-decoration: underline;
+}
+
+/* Author–year inline */
+.ref-cite-inline {
+  color: var(--ref-color-ink-muted);
+  font-size: var(--ref-text-sm);
+}
+
+.ref-cite-inline__author {
+  font-style: normal;
+}
+
+.ref-cite-inline__year {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ——— Footnotes ——— */
+.ref-footnotes {
+  margin-top: var(--ref-space-10);
+  padding-top: var(--ref-space-6);
+  border-top: 1px solid var(--ref-color-border);
+  font-size: var(--ref-text-sm);
+  color: var(--ref-color-ink-muted);
+}
+
+.ref-footnotes__title {
+  margin: 0 0 var(--ref-space-4);
+  font-size: var(--ref-text-sm);
+  font-weight: 600;
+  color: var(--ref-color-ink);
+}
+
+.ref-footnote {
+  display: grid;
+  grid-template-columns: var(--ref-marker-width) 1fr;
+  gap: var(--ref-space-2);
+  margin-bottom: var(--ref-space-3);
+}
+
+.ref-footnote__marker {
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--ref-color-accent-ink);
+  text-align: right;
+}
+
+.ref-footnote__marker a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.ref-footnote__marker a:hover {
+  text-decoration: underline;
+}
+
+.ref-footnote__body {
+  margin: 0;
+}
+
+.ref-footnote__back {
+  margin-left: var(--ref-space-2);
+  font-size: var(--ref-text-xs);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+/* ——— Bibliography ——— */
+.ref-bibliography {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: var(--ref-text-sm);
+}
+
+.ref-bib-entry {
+  display: grid;
+  grid-template-columns: var(--ref-marker-width) 1fr;
+  gap: var(--ref-space-3);
+  padding: var(--ref-space-4) 0;
+  border-bottom: 1px solid var(--ref-color-border);
+}
+
+.ref-bib-entry:last-child {
+  border-bottom: none;
+}
+
+.ref-bib-entry__label {
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--ref-color-ink-subtle);
+}
+
+.ref-bib-entry__title {
+  font-weight: 600;
+  color: var(--ref-color-ink);
+}
+
+.ref-bib-entry__meta {
+  margin: var(--ref-space-1) 0 0;
+  color: var(--ref-color-ink-muted);
+}
+
+.ref-bib-entry__links {
+  margin: var(--ref-space-2) 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ref-space-3);
+  font-size: var(--ref-text-xs);
+}
+
+.ref-bib-entry__links a {
+  font-weight: 500;
+}
+
+/* ——— Source card ——— */
+.ref-source-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ref-space-3);
+  padding: var(--ref-space-5);
+  background: var(--ref-color-surface);
+  border: 1px solid var(--ref-color-border);
+  border-radius: var(--ref-radius-md);
+  box-shadow: var(--ref-shadow-sm);
+  max-width: 24rem;
+}
+
+.ref-source-card__type {
+  margin: 0;
+  font-size: var(--ref-text-xs);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ref-color-ink-subtle);
+}
+
+.ref-source-card__title {
+  margin: 0;
+  font-size: var(--ref-text-base);
+  font-weight: 600;
+  line-height: var(--ref-leading-tight);
+}
+
+.ref-source-card__title a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.ref-source-card__title a:hover {
+  color: var(--ref-color-accent);
+  text-decoration: underline;
+}
+
+.ref-source-card__snippet {
+  margin: 0;
+  font-size: var(--ref-text-sm);
+  color: var(--ref-color-ink-muted);
+  line-height: var(--ref-leading-normal);
+}
+
+.ref-source-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--ref-space-3);
+  padding-top: var(--ref-space-3);
+  border-top: 1px solid var(--ref-color-border);
+  font-size: var(--ref-text-xs);
+  color: var(--ref-color-ink-subtle);
+}
+
+/* ——— Popover preview (static demo) ——— */
+.ref-popover {
+  position: relative;
+  display: inline-block;
+}
+
+.ref-popover__panel {
+  position: absolute;
+  z-index: 10;
+  left: 50%;
+  bottom: calc(100% + var(--ref-space-2));
+  transform: translateX(-50%);
+  width: max-content;
+  max-width: var(--ref-popover-max-width);
+  padding: var(--ref-space-4);
+  background: var(--ref-color-surface);
+  border: 1px solid var(--ref-color-border);
+  border-radius: var(--ref-radius-md);
+  box-shadow: var(--ref-shadow-popover);
+  font-family: var(--ref-font-sans);
+  font-size: var(--ref-text-sm);
+  text-align: left;
+}
+
+.ref-popover__panel::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -6px;
+  border: 6px solid transparent;
+  border-top-color: var(--ref-color-border);
+}
+
+.ref-popover__cite-key {
+  margin: 0 0 var(--ref-space-1);
+  font-size: var(--ref-text-xs);
+  font-weight: 600;
+  color: var(--ref-color-accent-ink);
+}
+
+.ref-popover__text {
+  margin: 0;
+  color: var(--ref-color-ink-muted);
+  line-height: var(--ref-leading-normal);
+}
+
+/* ——— Callouts ——— */
+.ref-callout {
+  padding: var(--ref-space-4) var(--ref-space-5);
+  border-radius: var(--ref-radius-md);
+  border: 1px solid var(--ref-color-border);
+  font-size: var(--ref-text-sm);
+}
+
+.ref-callout--note {
+  background: var(--ref-color-accent-soft);
+  border-color: rgb(37 99 235 / 25%);
+}
+
+.ref-callout--warning {
+  background: var(--ref-color-warning-soft);
+  border-color: var(--ref-color-warning-border);
+}
+
+.ref-callout--verified {
+  background: var(--ref-color-success-soft);
+  border-color: var(--ref-color-success-border);
+}
+
+.ref-callout__title {
+  margin: 0 0 var(--ref-space-2);
+  font-weight: 600;
+  color: var(--ref-color-ink);
+}
+
+.ref-callout__body {
+  margin: 0;
+  color: var(--ref-color-ink-muted);
+}
+
+/* ——— Reference list (compact) ——— */
+.ref-reflist {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: var(--ref-text-sm);
+}
+
+.ref-reflist__item {
+  display: flex;
+  align-items: baseline;
+  gap: var(--ref-space-3);
+  padding: var(--ref-space-2) 0;
+}
+
+.ref-reflist__bullet {
+  flex-shrink: 0;
+  width: 6px;
+  height: 6px;
+  margin-top: 0.45em;
+  border-radius: 50%;
+  background: var(--ref-color-accent);
+}
+
+.ref-reflist__text {
+  color: var(--ref-color-ink-muted);
+}
+
+.ref-reflist__text strong {
+  color: var(--ref-color-ink);
+  font-weight: 600;
+}
+
+/* ——— DOI / URL chip ——— */
+.ref-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ref-space-2);
+  padding: var(--ref-space-1) var(--ref-space-3);
+  font-family: var(--ref-font-mono);
+  font-size: var(--ref-text-xs);
+  color: var(--ref-color-ink-muted);
+  background: var(--ref-color-paper);
+  border: 1px solid var(--ref-color-border);
+  border-radius: 999px;
+  text-decoration: none;
+}
+
+.ref-chip:hover {
+  border-color: var(--ref-color-border-strong);
+  color: var(--ref-color-accent-ink);
+}

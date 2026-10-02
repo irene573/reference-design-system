@@ -1,0 +1,122 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--ref-font-sans);
+  font-size: var(--ref-text-base);
+  line-height: var(--ref-leading-normal);
+  color: var(--ref-color-ink);
+  background: var(--ref-color-paper);
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: var(--ref-color-accent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.15em;
+}
+
+a:hover {
+  color: var(--ref-color-accent-hover);
+}
+
+:focus-visible {
+  outline: 2px solid var(--ref-color-accent);
+  outline-offset: 2px;
+}
+
+/* Documentation shell */
+.ref-docs {
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: var(--ref-space-8) var(--ref-space-6) var(--ref-space-12);
+}
+
+.ref-docs__header {
+  margin-bottom: var(--ref-space-10);
+  padding-bottom: var(--ref-space-8);
+  border-bottom: 1px solid var(--ref-color-border);
+}
+
+.ref-docs__title {
+  margin: 0 0 var(--ref-space-3);
+  font-size: var(--ref-text-3xl);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.ref-docs__lede {
+  margin: 0;
+  max-width: 42rem;
+  font-size: var(--ref-text-lg);
+  color: var(--ref-color-ink-muted);
+}
+
+.ref-section {
+  margin-bottom: var(--ref-space-12);
+}
+
+.ref-section__heading {
+  margin: 0 0 var(--ref-space-2);
+  font-size: var(--ref-text-xl);
+  font-weight: 600;
+}
+
+.ref-section__desc {
+  margin: 0 0 var(--ref-space-6);
+  color: var(--ref-color-ink-muted);
+  max-width: 40rem;
+}
+
+.ref-demo {
+  padding: var(--ref-space-6);
+  background: var(--ref-color-surface);
+  border: 1px solid var(--ref-color-border);
+  border-radius: var(--ref-radius-lg);
+  box-shadow: var(--ref-shadow-sm);
+}
+
+.ref-demo + .ref-demo {
+  margin-top: var(--ref-space-4);
+}
+
+.ref-demo--prose {
+  font-family: var(--ref-font-serif);
+  font-size: var(--ref-text-lg);
+  line-height: var(--ref-leading-loose);
+}
+
+.ref-label {
+  display: block;
+  margin-bottom: var(--ref-space-3);
+  font-size: var(--ref-text-xs);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ref-color-ink-subtle);
+}
+
+.ref-grid-2 {
+  display: grid;
+  gap: var(--ref-space-4);
+}
+
+@media (min-width: 640px) {
+  .ref-grid-2 {
+    grid-template-columns: 1fr 1fr;
+  }
+}

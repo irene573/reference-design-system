@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Reference Design System</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;650&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/tokens.css" />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/components.css" />
+  </head>
+  <body>
+    <div class="ref-docs">
+      <header class="ref-docs__header">
+        <h1 class="ref-docs__title">Reference Design System</h1>
+        <p class="ref-docs__lede">
+          HTML and CSS patterns for citations, footnotes, bibliographies, and source
+          metadata. No build step — copy classes and tokens into your project.
+        </p>
+      </header>
+
+      <section class="ref-section" id="tokens">
+        <h2 class="ref-section__heading">Design tokens</h2>
+        <p class="ref-section__desc">
+          Colors, type, and spacing live in <code>css/tokens.css</code>. Wrap a section in
+          <code>.ref-theme-dark</code> for an alternate palette.
+        </p>
+        <div class="ref-grid-2">
+          <div class="ref-demo">
+            <span class="ref-label">Light surface</span>
+            <p style="margin: 0">
+              Ink <span style="color: var(--ref-color-ink)">■</span>,
+              accent <span style="color: var(--ref-color-accent)">■</span>,
+              muted <span style="color: var(--ref-color-ink-muted)">■</span>
+            </p>
+          </div>
+          <div class="ref-demo ref-theme-dark">
+            <span class="ref-label">Dark theme wrapper</span>
+            <p style="margin: 0; color: var(--ref-color-ink)">
+              Same tokens, inverted for dark UI panels.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="ref-section" id="inline">
+        <h2 class="ref-section__heading">Inline citations</h2>
+        <p class="ref-section__desc">
+          Superscript numeric, bracketed numeric, and author–year styles for body copy.
+        </p>
+        <div class="ref-demo ref-demo--prose">
+          <p style="margin: 0">
+            Generative models can hallucinate citations unless retrieval grounds the
+            answer<a href="#fn-1" class="ref-cite ref-cite--superscript" id="cite-1"
+              >1</a
+            >. Surveys recommend hybrid RAG pipelines<a
+              href="#fn-2"
+              class="ref-cite ref-cite--superscript ref-cite--bracket"
+              id="cite-2"
+              >2</a
+            >. See also
+            <span class="ref-cite-inline"
+              ><span class="ref-cite-inline__author">Vaswani et al.</span>,
+              <span class="ref-cite-inline__year">2017</span></span
+            >.
+          </p>
+        </div>
+        <div class="ref-demo" style="margin-top: 1rem">
+          <span class="ref-label">Hover preview (static layout)</span>
+          <p class="ref-demo--prose" style="margin: 0">
+            Click-through markers can show a preview panel
+            <span class="ref-popover">
+              <a href="#fn-1" class="ref-cite ref-cite--superscript">1</a>
+              <span class="ref-popover__panel" role="tooltip">
+                <p class="ref-popover__cite-key">[1] Lewis et al., 2020</p>
+                <p class="ref-popover__text">
+                  Retrieval-augmented generation for knowledge-intensive NLP tasks.
+                </p>
+              </span>
+            </span>
+            above the marker.
+          </p>
+        </div>
+      </section>
+
+      <section class="ref-section" id="footnotes">
+        <h2 class="ref-section__heading">Footnotes</h2>
+        <p class="ref-section__desc">
+          Numbered notes with back-links to the in-text marker.
+        </p>
+        <div class="ref-demo">
+          <aside class="ref-footnotes" aria-label="Footnotes">
+            <h3 class="ref-footnotes__title">Notes</h3>
+            <div class="ref-footnote" id="fn-1">
+              <div class="ref-footnote__marker">
+                <a href="#cite-1" aria-label="Footnote 1">1.</a>
+              </div>
+              <p class="ref-footnote__body">
+                Lewis, P., et al. (2020). Retrieval-augmented generation for
+                knowledge-intensive NLP tasks.
+                <a class="ref-footnote__back" href="#cite-1">↩</a>
+              </p>
+            </div>
+            <div class="ref-footnote" id="fn-2">
+              <div class="ref-footnote__marker">
+                <a href="#cite-2" aria-label="Footnote 2">2.</a>
+              </div>
+              <p class="ref-footnote__body">
+                Gao, Y., et al. (2023). A survey on retrieval-augmented text generation.
+                <a class="ref-footnote__back" href="#cite-2">↩</a>
+              </p>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="ref-section" id="bibliography">
+        <h2 class="ref-section__heading">Bibliography</h2>
+        <p class="ref-section__desc">
+          Full reference list with labels, metadata, and outbound links.
+        </p>
+        <div class="ref-demo">
+          <ol class="ref-bibliography">
+            <li class="ref-bib-entry">
+              <span class="ref-bib-entry__label">[1]</span>
+              <div>
+                <span class="ref-bib-entry__title"
+                  >Retrieval-augmented generation for knowledge-intensive NLP
+                  tasks</span
+                >
+                <p class="ref-bib-entry__meta">
+                  Lewis, P.; Perez, E.; Piktus, A.; et al. — NeurIPS 2020
+                </p>
+                <div class="ref-bib-entry__links">
+                  <a href="#">PDF</a>
+                  <a href="#">Semantic Scholar</a>
+                  <a href="#" class="ref-chip">doi:10.5555/3495724.3496517</a>
+                </div>
+              </div>
+            </li>
+            <li class="ref-bib-entry">
+              <span class="ref-bib-entry__label">[2]</span>
+              <div>
+                <span class="ref-bib-entry__title"
+                  >Attention is all you need</span
+                >
+                <p class="ref-bib-entry__meta">
+                  Vaswani, A.; Shazeer, N.; Parmar, N.; et al. — NeurIPS 2017
+                </p>
+                <div class="ref-bib-entry__links">
+                  <a href="#">arXiv</a>
+                  <a href="#" class="ref-chip">doi:10.48550/arXiv.1706.03762</a>
+                </div>
+              </div>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="ref-section" id="cards">
+        <h2 class="ref-section__heading">Source cards</h2>
+        <p class="ref-section__desc">
+          Compact previews for link unfurls, search results, or sidebar context.
+        </p>
+        <div class="ref-grid-2">
+          <article class="ref-source-card">
+            <p class="ref-source-card__type">Journal article</p>
+            <h3 class="ref-source-card__title">
+              <a href="#">Scaling laws for neural language models</a>
+            </h3>
+            <p class="ref-source-card__snippet">
+              Empirical study of compute, dataset size, and model size on language
+              modeling loss.
+            </p>
+            <footer class="ref-source-card__footer">
+              <span>Kaplan et al., 2020</span>
+              <a href="#">Open</a>
+            </footer>
+          </article>
+          <article class="ref-source-card ref-theme-dark">
+            <p class="ref-source-card__type">Web</p>
+            <h3 class="ref-source-card__title">
+              <a href="#">Citation Style Language</a>
+            </h3>
+            <p class="ref-source-card__snippet">
+              Open XML vocabulary for formatting bibliographies and in-text citations.
+            </p>
+            <footer class="ref-source-card__footer">
+              <span>citationstyles.org</span>
+              <a href="#">Visit</a>
+            </footer>
+          </article>
+        </div>
+      </section>
+
+      <section class="ref-section" id="callouts">
+        <h2 class="ref-section__heading">Callouts</h2>
+        <p class="ref-section__desc">
+          Annotate provenance, warnings, or verification status next to references.
+        </p>
+        <div class="ref-demo" style="display: flex; flex-direction: column; gap: 1rem">
+          <div class="ref-callout ref-callout--note">
+            <p class="ref-callout__title">Source note</p>
+            <p class="ref-callout__body">
+              This paragraph synthesizes [1] and [2]; primary claims should link to the
+              original papers.
+            </p>
+          </div>
+          <div class="ref-callout ref-callout--warning">
+            <p class="ref-callout__title">Unverified link</p>
+            <p class="ref-callout__body">
+              The DOI resolver returned 404 — confirm the identifier before publishing.
+            </p>
+          </div>
+          <div class="ref-callout ref-callout--verified">
+            <p class="ref-callout__title">Peer reviewed</p>
+            <p class="ref-callout__body">
+              Metadata matched Crossref as of 2026-03-01.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="ref-section" id="reflist">
+        <h2 class="ref-section__heading">Compact reference list</h2>
+        <p class="ref-section__desc">
+          Bullet list for “Further reading” or related works panels.
+        </p>
+        <div class="ref-demo">
+          <ul class="ref-reflist">
+            <li class="ref-reflist__item">
+              <span class="ref-reflist__bullet" aria-hidden="true"></span>
+              <span class="ref-reflist__text"
+                ><strong>BM25</strong> — classic sparse retrieval baseline (Robertson &
+                Zaragoza, 2009)</span
+              >
+            </li>
+            <li class="ref-reflist__item">
+              <span class="ref-reflist__bullet" aria-hidden="true"></span>
+              <span class="ref-reflist__text"
+                ><strong>DPR</strong> — dense passage retrieval (Karpukhin et al.,
+                2020)</span
+              >
+            </li>
+          </ul>
+        </div>
+      </section>
+    </div>
+  </body>
+</html>
