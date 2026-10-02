@@ -1,0 +1,609 @@
+/* Bundled for GitHub Pages — do not edit; rebuild from parts */
+@font-face {
+  font-family: 'Overused Grotesk';
+  src: url('../fonts/OverusedGrotesk-Light.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Overused Grotesk';
+  src: url('../fonts/OverusedGrotesk-Book.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Overused Grotesk';
+  src: url('../fonts/OverusedGrotesk-Medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Overused Grotesk';
+  src: url('../fonts/OverusedGrotesk-SemiBold.otf') format('opentype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Overused Grotesk';
+  src: url('../fonts/OverusedGrotesk-Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Fragment Mono';
+  src: url('../fonts/FragmentMono-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Fragment Mono';
+  src: url('../fonts/FragmentMono-Italic.otf') format('opentype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+:root {
+  --font-sans: 'Overused Grotesk', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono-display: 'Fragment Mono', ui-monospace, Menlo, Consolas, monospace;
+}
+/* ============================================================
+   TERRAFORMER — COLOR TOKENS
+   A near-monochrome, tool-grade palette. The canvas is near-black,
+   chrome surfaces are light grey, and hue is reserved almost entirely
+   for data (connector edges) and destructive/error signals.
+   ============================================================ */
+:root {
+  /* ---- Raw greyscale ramp (dark → light) ---- */
+  --tf-black:        #0d0d0d;  /* wordmark block, deepest chrome */
+  --tf-canvas:       #141414;  /* full-screen canvas background */
+  --tf-ink:          #151515;  /* primary text on light surfaces */
+  --tf-slate-900:    #2a2a2a;  /* node caption bar / pill (on canvas) */
+  --tf-slate-800:    #2b2b2b;  /* minimap field */
+  --tf-slate-700:    #3c3c3c;  /* hover of dark controls */
+  --tf-slate-600:    #3f3f3f;  /* timeline inactive segment */
+  --tf-grey-500:     #6e6e6e;  /* accent / timeline hue */
+  --tf-muted:        #707070;  /* secondary / muted text */
+  --tf-grey-400:     #9a9a9a;  /* neutral edge / gradient mid */
+  --tf-grey-300:     #b0b0b0;  /* disabled text, gradient */
+  --tf-grey-250:     #bcbcbc;  /* log bubble surface */
+  --tf-grey-200:     #cccccc;  /* SELECTED / highlight fill */
+  --tf-grey-150:     #d0d0d0;  /* square button surface */
+  --tf-surface:      #d9d9d9;  /* primary light chrome surface */
+  --tf-grey-100:     #e6e6e6;  /* raised inner surface */
+  --tf-grey-050:     #ededed;  /* input field / hover-light */
+  --tf-grey-025:     #f0f0f0;  /* response bubble / hover */
+  --tf-white-dim:    #f2f2f2;  /* light text on canvas glyphs */
+  --tf-white:        #ffffff;
+
+  /* ---- Signal / destructive ---- */
+  --tf-danger:       #d05a5a;  /* delete control stroke */
+  --tf-danger-strong:#c02820;  /* error banner */
+
+  /* ---- Connector / data palette (categorical, in order) ---- */
+  --tf-edge-blue:    #2f6be6;
+  --tf-edge-violet:  #b026ff;
+  --tf-edge-grey:    #9a9a9a;
+  --tf-edge-green:   #22a06b;
+  --tf-edge-amber:   #e0872a;
+  --tf-edge-rose:    #e05a7d;
+  --tf-edge-teal:    #12aab0;
+
+  /* ============================================================
+     SEMANTIC ALIASES — reference these in components
+     ============================================================ */
+  /* Backgrounds */
+  --surface-canvas:      var(--tf-canvas);   /* the work surface */
+  --surface-chrome:      var(--tf-surface);  /* panels, bars, buttons */
+  --surface-raised:      var(--tf-grey-100); /* nested surface within chrome */
+  --surface-input:       var(--tf-grey-050); /* text inputs */
+  --surface-wordmark:    var(--tf-black);    /* brand block */
+  --surface-node-cap:    var(--tf-slate-900);/* dark caption bar on canvas */
+  --surface-log:         var(--tf-grey-250); /* system log bubble */
+  --surface-response:    var(--tf-grey-025); /* user response bubble */
+
+  /* Text */
+  --text-primary:        var(--tf-ink);      /* on light chrome */
+  --text-muted:          var(--tf-muted);    /* secondary on light */
+  --text-disabled:       var(--tf-grey-300);
+  --text-on-canvas:      var(--tf-white-dim);/* labels over canvas/nodes */
+  --text-inverse:        var(--tf-white);    /* on dark chrome */
+
+  /* Interactive states.
+     Hover is ALWAYS a fill change (never a shadow, never an outline), but WHICH
+     fill depends on the surface the control sits ON — three idioms, see
+     guidelines/effects-states:
+       on light chrome ................ --state-hover-dark   (invert)
+       a row inside a light panel ..... --state-hover-light  (lighten)
+       a light block on the canvas .... --state-selected     (deepen)
+     That last one is why --state-selected is not only a selection tone: for
+     canvas-borne blocks (the sketch rail, graph cap buttons, add placeholders)
+     it IS the hover fill. Inverting those would sink them into the near-black
+     canvas, and --state-hover-light is only 3/255 off --surface-input, so it
+     reads as inert there. */
+  --state-hover-dark:    var(--tf-black);     /* hover on light chrome: invert */
+  --state-hover-light:   var(--tf-grey-025);  /* hover on a row inside a light panel */
+  --state-selected:      var(--tf-grey-200);  /* selection fill — AND hover for canvas-borne light blocks */
+  --state-lifted-opacity:0.32;                /* @kind other */ /* dragged element ghost */
+
+  /* Lines & signals */
+  --border-strong:       var(--tf-ink);
+  --accent:              var(--tf-grey-500);  /* timeline / drop-target accent */
+  --danger:              var(--tf-danger);
+  --danger-strong:       var(--tf-danger-strong);
+}
+/* ============================================================
+   TERRAFORMER — TYPOGRAPHY TOKENS
+   Three roles: a variable grotesk for chrome, a mono for editorial
+   headings, and a platform mono for canvas/technical readouts.
+   Type is small and dense — this is a pro tool, not a webpage.
+   ============================================================ */
+:root {
+  /* ---- Families ---- */
+  --font-sans:  'Overused Grotesk', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono-display: 'Fragment Mono', ui-monospace, Menlo, Consolas, monospace;
+  --font-mono:  'SFMono-Regular', ui-monospace, Menlo, Consolas, monospace;
+
+  /* ---- Type scale (px — the source is genuinely this small) ---- */
+  --text-2xs:  8px;    /* scene-name labels on nodes */
+  --text-xs:   10px;   /* suggest chips, timer readouts */
+  --text-cond: 10.5px; /* connector condition text */
+  --text-sm:   11px;   /* log/response bubbles, sub text, txt-buttons */
+  --text-base: 12px;   /* action buttons, textarea */
+  --text-md:   13px;   /* body base, wordmark, zoom buttons */
+  --text-lg:   15px;   /* panel heading (h2) */
+
+  /* ---- Weights (variable grotesk) ---- */
+  --weight-regular: 400;
+  --weight-medium:  500;  /* wordmark, chrome buttons */
+
+  /* ---- Line heights ---- */
+  --leading-tight: 1.2;   /* node labels */
+  --leading-snug:  1.3;   /* condition text */
+  --leading-normal:1.5;   /* log bubbles */
+
+  /* ---- Letter-spacing — the wide-tracked-caps chrome signature ---- */
+  --tracking-tight:  0;
+  --tracking-timer:  0.06em;  /* timeline readout */
+  --tracking-enter:  0.08em;  /* enter / undo pills */
+  --tracking-action: 0.12em;  /* PUBLISH / EXPORT / txt-buttons */
+  --tracking-wordmark:0.14em; /* TERRAFORMER wordmark */
+
+  /* ---- Semantic roles ---- */
+  --type-wordmark-size:   var(--text-md);
+  --type-wordmark-weight: var(--weight-medium);
+  --type-wordmark-track:  var(--tracking-wordmark);
+
+  --type-heading-family:  var(--font-mono-display);
+  --type-heading-size:    var(--text-lg);
+  --type-heading-weight:  var(--weight-regular);
+
+  --type-action-size:     var(--text-base);
+  --type-action-track:    var(--tracking-action);
+
+  --type-body-size:       var(--text-sm);
+  --type-label-size:      var(--text-2xs);
+  --type-cond-size:       var(--text-cond);
+}
+/* ============================================================
+   TERRAFORMER — SPACING & LAYOUT TOKENS
+   The canvas graph runs on a fixed metric grid; the chrome uses a
+   tight compact spacing scale. Both are captured here.
+   ============================================================ */
+:root {
+  /* ---- Compact spacing scale (chrome padding/gaps) ---- */
+  --space-0:  0px;
+  --space-1:  2px;
+  --space-2:  4px;
+  --space-3:  6px;
+  --space-4:  8px;
+  --space-5:  10px;
+  --space-6:  12px;
+  --space-7:  14px;
+  --space-8:  16px;
+  --space-9:  18px;
+  --space-10: 20px;
+
+  /* ---- Chrome sizing ---- */
+  --bar-height:      34px;   /* top bar */
+  --panel-width:     344px;  /* right authoring panel */
+  --panel-img-h:     150px;  /* panel media strip */
+  --input-h:         96px;   /* chat textarea */
+  --control-sq:      22px;   /* zoom / square buttons */
+  --minimap-w:       96px;
+  --minimap-h:       54px;
+  --timeline-h:      16px;
+  --timeline-seg-h:  12px;
+
+  /* ---- Canvas graph metrics (the node-flow layout system) ---- */
+  --grid:      20px;   /* snap grid */
+  --node-w:    200px;  /* scene tile width */
+  --node-img-h:118px;  /* scene image height */
+  --node-cap-h:22px;   /* scene caption bar height */
+  --conn-w:    140px;  /* connector pill width */
+  --conn-h:    26px;   /* connector pill height */
+  --col:       440px;  /* horizontal column pitch */
+  --row:       176px;  /* vertical row pitch */
+  --gap:       8px;    /* wire stub gap */
+  --dot-r:     3px;    /* wire endpoint dot radius */
+
+  /* ---- Corner radii — sharp by default; only tiny elements round ---- */
+  --radius-none: 0px;    /* chrome, buttons, panels are square */
+  --radius-xs:   2px;    /* contenteditable focus, tiny */
+  --radius-sm:   3px;    /* timeline segments, drop bar */
+  --radius-md:   6px;    /* drop-target box, grips */
+  --radius-pill: 8.5px;  /* round canvas +/- control buttons */
+}
+/* ============================================================
+   TERRAFORMER — EFFECTS: MOTION, ELEVATION, INTERACTION
+   The system is deliberately flat: no drop shadows on chrome, no
+   gradients as decoration (gradients appear only inside node artwork).
+   Feedback comes from color inversion and fast fades.
+   ============================================================ */
+:root {
+  /* ---- Motion durations ---- */
+  --dur-fast:   0.15s;   /* @kind other */ /* button/hover fills */
+  --dur-base:   0.18s;   /* @kind other */ /* wire + fill transitions */
+  --dur-panel:  0.32s;   /* @kind other */ /* panel slide in/out */
+
+  /* ---- Easing ---- */
+  --ease-standard: ease;                          /* @kind other */ /* the workhorse */
+  --ease-panel:    cubic-bezier(0.22, 1, 0.36, 1);/* @kind other */ /* panel slide (soft overshoot-free) */
+
+  /* ---- Composed transitions ---- */
+  --transition-hover:  background var(--dur-fast) var(--ease-standard),
+                       color var(--dur-fast) var(--ease-standard);
+  --transition-wire:   stroke var(--dur-base) var(--ease-standard),
+                       fill var(--dur-base) var(--ease-standard);
+  --transition-panel:  transform var(--dur-panel) var(--ease-panel),
+                       opacity 0.2s var(--ease-standard);
+
+  /* ---- Elevation ----
+     There are no ambient/drop shadows in the system. "Elevation" is
+     expressed by surface lightness (darker canvas → lighter chrome) and
+     by opacity ghosting for lifted/dragged elements. */
+  --shadow-none: none;
+  --overlay-drag: rgba(255, 255, 255, 0.10);  /* drop-target fill */
+  --overlay-focus: rgba(0, 0, 0, 0.07);        /* contenteditable focus wash */
+  --hairline-on-canvas: rgba(255, 255, 255, 0.55); /* glyph strokes over canvas */
+
+  /* ---- Selectable dashed outline (drop target) ---- */
+  --dash-pattern: 6 4; /* @kind other */
+  --dash-width: 1.5px;
+}
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: var(--text-md);
+  font-weight: var(--weight-regular);
+  line-height: var(--leading-normal);
+  color: var(--text-primary);
+  background: #d9d9d9;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+:focus-visible {
+  outline: 2px solid var(--text-primary);
+  outline-offset: 2px;
+}
+
+.ds-wrap {
+  max-width: 40rem;
+  margin: 0 auto;
+  padding: 32px 20px 48px;
+}
+
+.ds-header {
+  margin-bottom: 32px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--text-primary);
+}
+
+.ds-header__title {
+  margin: 0 0 8px;
+  font-family: var(--font-mono-display);
+  font-size: 15px;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+}
+
+.ds-header__lede {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  line-height: var(--leading-normal);
+}
+
+.ds-header__lede a {
+  color: var(--text-primary);
+}
+
+.ds-section {
+  margin-bottom: 36px;
+}
+
+.ds-section__title {
+  margin: 0 0 6px;
+  font-family: var(--font-mono-display);
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.ds-section__note {
+  margin: 0 0 16px;
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  line-height: var(--leading-normal);
+}
+
+.ds-section__note code {
+  font-family: var(--font-mono);
+  font-size: 10px;
+}
+/* Specimens — values from terraformer/design/system and src/components/ui.ts */
+
+.ds-colors {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.ds-swatch {
+  border: 1px solid var(--text-primary);
+  padding: 20px 16px;
+  min-height: 88px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 4px;
+}
+
+.ds-swatch--chrome {
+  background: #d9d9d9;
+  color: var(--text-primary);
+}
+
+.ds-swatch--node {
+  background: #2a2a2a;
+  color: #f2f2f2;
+}
+
+.ds-swatch__hex {
+  font-family: var(--font-mono);
+  font-size: 13px;
+}
+
+.ds-swatch__role {
+  font-size: var(--text-sm);
+  line-height: var(--leading-normal);
+}
+
+.ds-swatch__token {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  opacity: 0.75;
+}
+
+.ds-typeface {
+  border: 1px solid var(--text-primary);
+  padding: 16px;
+  margin-bottom: 12px;
+  background: #ededed;
+}
+
+.ds-typeface__name {
+  margin: 0 0 4px;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.ds-typeface__sample {
+  margin: 0 0 8px;
+  font-size: 22px;
+  line-height: 1.2;
+}
+
+.ds-typeface__sample--sans {
+  font-family: var(--font-sans);
+  font-weight: 500;
+}
+
+.ds-typeface__sample--mono {
+  font-family: var(--font-mono-display);
+  font-weight: 400;
+  font-size: 20px;
+}
+
+.ds-typeface__use {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  line-height: var(--leading-normal);
+}
+
+.ds-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+  border: 1px solid var(--text-primary);
+}
+
+.ds-table th,
+.ds-table td {
+  border: 1px solid var(--text-primary);
+  padding: 8px 10px;
+  text-align: left;
+  vertical-align: top;
+}
+
+.ds-table th {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 400;
+  background: #e6e6e6;
+}
+
+.ds-table code {
+  font-family: var(--font-mono);
+  font-size: 10px;
+}
+
+.ds-scale {
+  border: 1px solid var(--text-primary);
+  background: #ededed;
+}
+
+.ds-scale__row {
+  display: grid;
+  grid-template-columns: 7.5rem 1fr;
+  gap: 12px;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--tf-grey-400);
+  align-items: baseline;
+}
+
+.ds-scale__row:last-child {
+  border-bottom: none;
+}
+
+.ds-scale__meta {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--text-muted);
+}
+
+.ds-scale__sample {
+  color: var(--text-primary);
+}
+
+/* Padding specimens — copied from design/system components + tile prototype */
+.ds-pad-spec {
+  border: 1px solid var(--text-primary);
+  margin-bottom: 12px;
+  background: #d9d9d9;
+}
+
+.ds-pad-spec__label {
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--text-primary);
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  background: #e6e6e6;
+}
+
+.ds-pad-spec__label span {
+  display: block;
+  margin-top: 4px;
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--text-muted);
+  font-size: 8px;
+}
+
+.ds-pad-spec__demo {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  line-height: 1.5;
+  color: var(--text-primary);
+}
+
+.ds-pad-spec__demo--log {
+  background: #bcbcbc;
+  padding: 9px 11px;
+  max-width: 84%;
+}
+
+.ds-pad-spec__demo--resp {
+  background: #f0f0f0;
+  padding: 8px 12px;
+  margin-left: auto;
+  width: fit-content;
+}
+
+.ds-pad-spec__demo--panel-head {
+  padding: 12px 14px 10px;
+  background: #d9d9d9;
+}
+
+.ds-pad-spec__demo--panel-head h3 {
+  margin: 0;
+  font-family: var(--font-mono-display);
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.ds-pad-spec__demo--panel-body {
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  background: #d9d9d9;
+}
+
+.ds-pad-spec__demo--suggest {
+  display: inline-block;
+  font-size: 10px;
+  color: var(--text-muted);
+  padding: 6px 10px;
+  background: #d9d9d9;
+}
+
+.ds-pad-spec__demo--composer {
+  padding: 12px 12px 34px;
+  font-size: 12px;
+  background: #ededed;
+  min-height: 96px;
+}
+
+.ds-pad-spec__demo--action {
+  display: inline-flex;
+  align-items: center;
+  height: 34px;
+  padding: 0 18px;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  background: transparent;
+}
+
+.ds-pad-spec__demo--text-btn {
+  display: inline-block;
+  padding: 8px 16px;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  background: #d9d9d9;
+}
+
+.ds-pad-spec__demo--field {
+  display: inline-block;
+  padding: 6px 8px;
+  font-size: 12px;
+  background: #ededed;
+}
