@@ -1,0 +1,85 @@
+/* ============================================================
+   TERRAFORMER — COLOR TOKENS
+   A near-monochrome, tool-grade palette. The canvas is near-black,
+   chrome surfaces are light grey, and hue is reserved almost entirely
+   for data (connector edges) and destructive/error signals.
+   ============================================================ */
+:root {
+  /* ---- Raw greyscale ramp (dark → light) ---- */
+  --tf-black:        #0d0d0d;  /* wordmark block, deepest chrome */
+  --tf-canvas:       #141414;  /* full-screen canvas background */
+  --tf-ink:          #151515;  /* primary text on light surfaces */
+  --tf-slate-900:    #2a2a2a;  /* node caption bar / pill (on canvas) */
+  --tf-slate-800:    #2b2b2b;  /* minimap field */
+  --tf-slate-700:    #3c3c3c;  /* hover of dark controls */
+  --tf-slate-600:    #3f3f3f;  /* timeline inactive segment */
+  --tf-grey-500:     #6e6e6e;  /* accent / timeline hue */
+  --tf-muted:        #707070;  /* secondary / muted text */
+  --tf-grey-400:     #9a9a9a;  /* neutral edge / gradient mid */
+  --tf-grey-300:     #b0b0b0;  /* disabled text, gradient */
+  --tf-grey-250:     #bcbcbc;  /* log bubble surface */
+  --tf-grey-200:     #cccccc;  /* SELECTED / highlight fill */
+  --tf-grey-150:     #d0d0d0;  /* square button surface */
+  --tf-surface:      #d9d9d9;  /* primary light chrome surface */
+  --tf-grey-100:     #e6e6e6;  /* raised inner surface */
+  --tf-grey-050:     #ededed;  /* input field / hover-light */
+  --tf-grey-025:     #f0f0f0;  /* response bubble / hover */
+  --tf-white-dim:    #f2f2f2;  /* light text on canvas glyphs */
+  --tf-white:        #ffffff;
+
+  /* ---- Signal / destructive ---- */
+  --tf-danger:       #d05a5a;  /* delete control stroke */
+  --tf-danger-strong:#c02820;  /* error banner */
+
+  /* ---- Connector / data palette (categorical, in order) ---- */
+  --tf-edge-blue:    #2f6be6;
+  --tf-edge-violet:  #b026ff;
+  --tf-edge-grey:    #9a9a9a;
+  --tf-edge-green:   #22a06b;
+  --tf-edge-amber:   #e0872a;
+  --tf-edge-rose:    #e05a7d;
+  --tf-edge-teal:    #12aab0;
+
+  /* ============================================================
+     SEMANTIC ALIASES — reference these in components
+     ============================================================ */
+  /* Backgrounds */
+  --surface-canvas:      var(--tf-canvas);   /* the work surface */
+  --surface-chrome:      var(--tf-surface);  /* panels, bars, buttons */
+  --surface-raised:      var(--tf-grey-100); /* nested surface within chrome */
+  --surface-input:       var(--tf-grey-050); /* text inputs */
+  --surface-wordmark:    var(--tf-black);    /* brand block */
+  --surface-node-cap:    var(--tf-slate-900);/* dark caption bar on canvas */
+  --surface-log:         var(--tf-grey-250); /* system log bubble */
+  --surface-response:    var(--tf-grey-025); /* user response bubble */
+
+  /* Text */
+  --text-primary:        var(--tf-ink);      /* on light chrome */
+  --text-muted:          var(--tf-muted);    /* secondary on light */
+  --text-disabled:       var(--tf-grey-300);
+  --text-on-canvas:      var(--tf-white-dim);/* labels over canvas/nodes */
+  --text-inverse:        var(--tf-white);    /* on dark chrome */
+
+  /* Interactive states.
+     Hover is ALWAYS a fill change (never a shadow, never an outline), but WHICH
+     fill depends on the surface the control sits ON — three idioms, see
+     guidelines/effects-states:
+       on light chrome ................ --state-hover-dark   (invert)
+       a row inside a light panel ..... --state-hover-light  (lighten)
+       a light block on the canvas .... --state-selected     (deepen)
+     That last one is why --state-selected is not only a selection tone: for
+     canvas-borne blocks (the sketch rail, graph cap buttons, add placeholders)
+     it IS the hover fill. Inverting those would sink them into the near-black
+     canvas, and --state-hover-light is only 3/255 off --surface-input, so it
+     reads as inert there. */
+  --state-hover-dark:    var(--tf-black);     /* hover on light chrome: invert */
+  --state-hover-light:   var(--tf-grey-025);  /* hover on a row inside a light panel */
+  --state-selected:      var(--tf-grey-200);  /* selection fill — AND hover for canvas-borne light blocks */
+  --state-lifted-opacity:0.32;                /* @kind other */ /* dragged element ghost */
+
+  /* Lines & signals */
+  --border-strong:       var(--tf-ink);
+  --accent:              var(--tf-grey-500);  /* timeline / drop-target accent */
+  --danger:              var(--tf-danger);
+  --danger-strong:       var(--tf-danger-strong);
+}

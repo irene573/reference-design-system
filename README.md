@@ -1,41 +1,47 @@
-# Reference Design System
+# References · Terraformer Design System
 
-A static HTML/CSS design system for citation and reference UI: inline markers, footnotes, bibliography lists, source cards, and callouts.
+HTML/CSS patterns for **citations and source metadata**, styled with the same tokens as [Terraformer’s design system](https://github.com/Overworldai/world-client/tree/main/terraformer/design/system) (near-black canvas, light chrome, flat surfaces, `--tf-edge-*` for links and accents).
 
 ## Quick start
 
-**Live preview (no setup):** [https://irene573.github.io/reference-design-system/](https://irene573.github.io/reference-design-system/)
+**Live preview:** [https://irene573.github.io/reference-design-system/](https://irene573.github.io/reference-design-system/)
 
-**Local preview:** the site is plain static files. Either open `index.html` in a browser, or start a server in this folder (the URL only works while the command is running):
+**Local:**
 
 ```bash
 cd reference-design-system
 python3 -m http.server 8765
 ```
 
-Then visit [http://127.0.0.1:8765/](http://127.0.0.1:8765/) (use `127.0.0.1` if `localhost` fails).
+Open [http://127.0.0.1:8765/](http://127.0.0.1:8765/).
 
 ## Structure
 
-| File | Purpose |
+| Path | Purpose |
 | --- | --- |
-| `css/tokens.css` | Design tokens (color, type, space, radius) |
-| `css/base.css` | Reset, page layout, typography defaults |
-| `css/components.css` | Reference UI components |
-| `index.html` | Living documentation and examples |
+| `css/styles.css` | Single entry (imports Terraformer tokens + reference components) |
+| `css/terraformer/*.css` | Copy of `terraformer/design/system/tokens/` — sync when tokens change |
+| `css/base.css` | Docs shell, section layout |
+| `css/components.css` | `ref-*` citation/bibliography components |
+| `index.html` | Specimens |
 
 ## Usage
 
-Link the stylesheets in order:
+Link one stylesheet:
 
 ```html
-<link rel="stylesheet" href="css/tokens.css" />
-<link rel="stylesheet" href="css/base.css" />
-<link rel="stylesheet" href="css/components.css" />
+<link rel="stylesheet" href="css/styles.css" />
 ```
 
-Copy the markup patterns from `index.html` and adjust content. All components use the `ref-` prefix and BEM-style modifiers (e.g. `ref-cite--superscript`).
+Use semantic Terraformer variables in custom markup (`--surface-chrome`, `--text-primary`, `--tf-edge-blue`, …). Reference-specific classes use the `ref-` prefix (see `index.html`).
 
-## Customization
+## Syncing tokens
 
-Override tokens on `:root` or a wrapper (e.g. `.ref-theme-dark`) to retheme without touching component rules.
+When Terraformer tokens change in world-client, refresh this repo:
+
+```bash
+cp world-client/terraformer/design/system/tokens/{colors,typography,spacing,effects}.css \
+  reference-design-system/css/terraformer/
+```
+
+Brand fonts (Overused Grotesk) ship with the main design system under `assets/fonts/`; this site uses system-ui fallbacks plus Fragment Mono from Google Fonts until self-hosted files are added.

@@ -1,0 +1,49 @@
+/* ============================================================
+   TERRAFORMER — SPACING & LAYOUT TOKENS
+   The canvas graph runs on a fixed metric grid; the chrome uses a
+   tight compact spacing scale. Both are captured here.
+   ============================================================ */
+:root {
+  /* ---- Compact spacing scale (chrome padding/gaps) ---- */
+  --space-0:  0px;
+  --space-1:  2px;
+  --space-2:  4px;
+  --space-3:  6px;
+  --space-4:  8px;
+  --space-5:  10px;
+  --space-6:  12px;
+  --space-7:  14px;
+  --space-8:  16px;
+  --space-9:  18px;
+  --space-10: 20px;
+
+  /* ---- Chrome sizing ---- */
+  --bar-height:      34px;   /* top bar */
+  --panel-width:     344px;  /* right authoring panel */
+  --panel-img-h:     150px;  /* panel media strip */
+  --input-h:         96px;   /* chat textarea */
+  --control-sq:      22px;   /* zoom / square buttons */
+  --minimap-w:       96px;
+  --minimap-h:       54px;
+  --timeline-h:      16px;
+  --timeline-seg-h:  12px;
+
+  /* ---- Canvas graph metrics (the node-flow layout system) ---- */
+  --grid:      20px;   /* snap grid */
+  --node-w:    200px;  /* scene tile width */
+  --node-img-h:118px;  /* scene image height */
+  --node-cap-h:22px;   /* scene caption bar height */
+  --conn-w:    140px;  /* connector pill width */
+  --conn-h:    26px;   /* connector pill height */
+  --col:       440px;  /* horizontal column pitch */
+  --row:       176px;  /* vertical row pitch */
+  --gap:       8px;    /* wire stub gap */
+  --dot-r:     3px;    /* wire endpoint dot radius */
+
+  /* ---- Corner radii — sharp by default; only tiny elements round ---- */
+  --radius-none: 0px;    /* chrome, buttons, panels are square */
+  --radius-xs:   2px;    /* contenteditable focus, tiny */
+  --radius-sm:   3px;    /* timeline segments, drop bar */
+  --radius-md:   6px;    /* drop-target box, grips */
+  --radius-pill: 8.5px;  /* round canvas +/- control buttons */
+}

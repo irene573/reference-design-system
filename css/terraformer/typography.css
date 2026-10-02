@@ -1,0 +1,53 @@
+/* ============================================================
+   TERRAFORMER — TYPOGRAPHY TOKENS
+   Three roles: a variable grotesk for chrome, a mono for editorial
+   headings, and a platform mono for canvas/technical readouts.
+   Type is small and dense — this is a pro tool, not a webpage.
+   ============================================================ */
+:root {
+  /* ---- Families ---- */
+  --font-sans:  'Overused Grotesk', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono-display: 'Fragment Mono', ui-monospace, Menlo, Consolas, monospace;
+  --font-mono:  'SFMono-Regular', ui-monospace, Menlo, Consolas, monospace;
+
+  /* ---- Type scale (px — the source is genuinely this small) ---- */
+  --text-2xs:  8px;    /* scene-name labels on nodes */
+  --text-xs:   10px;   /* suggest chips, timer readouts */
+  --text-cond: 10.5px; /* connector condition text */
+  --text-sm:   11px;   /* log/response bubbles, sub text, txt-buttons */
+  --text-base: 12px;   /* action buttons, textarea */
+  --text-md:   13px;   /* body base, wordmark, zoom buttons */
+  --text-lg:   15px;   /* panel heading (h2) */
+
+  /* ---- Weights (variable grotesk) ---- */
+  --weight-regular: 400;
+  --weight-medium:  500;  /* wordmark, chrome buttons */
+
+  /* ---- Line heights ---- */
+  --leading-tight: 1.2;   /* node labels */
+  --leading-snug:  1.3;   /* condition text */
+  --leading-normal:1.5;   /* log bubbles */
+
+  /* ---- Letter-spacing — the wide-tracked-caps chrome signature ---- */
+  --tracking-tight:  0;
+  --tracking-timer:  0.06em;  /* timeline readout */
+  --tracking-enter:  0.08em;  /* enter / undo pills */
+  --tracking-action: 0.12em;  /* PUBLISH / EXPORT / txt-buttons */
+  --tracking-wordmark:0.14em; /* TERRAFORMER wordmark */
+
+  /* ---- Semantic roles ---- */
+  --type-wordmark-size:   var(--text-md);
+  --type-wordmark-weight: var(--weight-medium);
+  --type-wordmark-track:  var(--tracking-wordmark);
+
+  --type-heading-family:  var(--font-mono-display);
+  --type-heading-size:    var(--text-lg);
+  --type-heading-weight:  var(--weight-regular);
+
+  --type-action-size:     var(--text-base);
+  --type-action-track:    var(--tracking-action);
+
+  --type-body-size:       var(--text-sm);
+  --type-label-size:      var(--text-2xs);
+  --type-cond-size:       var(--text-cond);
+}

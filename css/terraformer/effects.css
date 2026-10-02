@@ -1,0 +1,37 @@
+/* ============================================================
+   TERRAFORMER — EFFECTS: MOTION, ELEVATION, INTERACTION
+   The system is deliberately flat: no drop shadows on chrome, no
+   gradients as decoration (gradients appear only inside node artwork).
+   Feedback comes from color inversion and fast fades.
+   ============================================================ */
+:root {
+  /* ---- Motion durations ---- */
+  --dur-fast:   0.15s;   /* @kind other */ /* button/hover fills */
+  --dur-base:   0.18s;   /* @kind other */ /* wire + fill transitions */
+  --dur-panel:  0.32s;   /* @kind other */ /* panel slide in/out */
+
+  /* ---- Easing ---- */
+  --ease-standard: ease;                          /* @kind other */ /* the workhorse */
+  --ease-panel:    cubic-bezier(0.22, 1, 0.36, 1);/* @kind other */ /* panel slide (soft overshoot-free) */
+
+  /* ---- Composed transitions ---- */
+  --transition-hover:  background var(--dur-fast) var(--ease-standard),
+                       color var(--dur-fast) var(--ease-standard);
+  --transition-wire:   stroke var(--dur-base) var(--ease-standard),
+                       fill var(--dur-base) var(--ease-standard);
+  --transition-panel:  transform var(--dur-panel) var(--ease-panel),
+                       opacity 0.2s var(--ease-standard);
+
+  /* ---- Elevation ----
+     There are no ambient/drop shadows in the system. "Elevation" is
+     expressed by surface lightness (darker canvas → lighter chrome) and
+     by opacity ghosting for lifted/dragged elements. */
+  --shadow-none: none;
+  --overlay-drag: rgba(255, 255, 255, 0.10);  /* drop-target fill */
+  --overlay-focus: rgba(0, 0, 0, 0.07);        /* contenteditable focus wash */
+  --hairline-on-canvas: rgba(255, 255, 255, 0.55); /* glyph strokes over canvas */
+
+  /* ---- Selectable dashed outline (drop target) ---- */
+  --dash-pattern: 6 4; /* @kind other */
+  --dash-width: 1.5px;
+}

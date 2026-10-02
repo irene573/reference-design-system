@@ -1,0 +1,6 @@
+/* Web fallbacks — canonical @font-face lives in world-client terraformer/design/system/tokens/fonts.css */
+@import url('https://fonts.googleapis.com/css2?family=Fragment+Mono:ital@0;1&display=swap');
+
+:root {
+  --font-sans: 'Overused Grotesk', system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
