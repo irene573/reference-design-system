@@ -1,0 +1,261 @@
+/* Foundation specimens — mirrors terraformer/design/system/guidelines/*.card.html */
+
+.ds-kicker {
+  margin: 0 0 var(--space-4);
+  padding: var(--space-5) var(--space-6) 0;
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  letter-spacing: var(--tracking-action);
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* ——— Greyscale ramp ——— */
+.ds-ramp {
+  display: flex;
+  min-height: 120px;
+}
+
+.ds-ramp__swatch {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: var(--space-4) var(--space-3);
+  min-width: 0;
+}
+
+.ds-ramp__swatch span {
+  font-family: var(--font-mono);
+  font-size: 8px;
+  letter-spacing: 0.02em;
+}
+
+.ds-ramp__swatch--light span {
+  color: var(--tf-ink);
+}
+
+.ds-ramp__swatch--dark span {
+  color: var(--tf-white-dim);
+}
+
+/* ——— Semantic surfaces ——— */
+.ds-surfaces {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  background: var(--tf-grey-400);
+}
+
+@media (min-width: 520px) {
+  .ds-surfaces {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.ds-surface {
+  padding: var(--space-6);
+  min-height: 72px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: var(--text-2xs);
+  letter-spacing: var(--tracking-timer);
+  text-transform: uppercase;
+}
+
+.ds-surface__hex {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  text-transform: none;
+  letter-spacing: 0;
+  opacity: 0.85;
+}
+
+/* ——— Connector palette ——— */
+.ds-edges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-6);
+  padding: var(--space-8) var(--space-6);
+  justify-content: center;
+}
+
+.ds-edge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.ds-edge__dot {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+}
+
+.ds-edge__hex {
+  font-family: var(--font-mono);
+  font-size: 8px;
+  color: var(--text-on-canvas);
+}
+
+/* ——— Typography families ——— */
+.ds-type-block {
+  padding: var(--space-6) var(--space-6) var(--space-5);
+  border-bottom: 1px solid var(--tf-grey-400);
+}
+
+.ds-type-block:last-child {
+  border-bottom: none;
+}
+
+.ds-type-block__tag {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: var(--tracking-action);
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: var(--space-4);
+}
+
+.ds-type-block__sample {
+  color: var(--text-primary);
+}
+
+.ds-type-block__sample--sans {
+  font-family: var(--font-sans);
+  font-size: 22px;
+  font-weight: var(--weight-medium);
+}
+
+.ds-type-block__sample--display {
+  font-family: var(--font-mono-display);
+  font-size: 20px;
+}
+
+.ds-type-block__sample--mono {
+  font-family: var(--font-mono);
+  font-size: 16px;
+}
+
+/* ——— Type scale ——— */
+.ds-scale {
+  padding: var(--space-6) var(--space-6) var(--space-8);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.ds-scale__row {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-8);
+}
+
+.ds-scale__token {
+  flex: none;
+  width: 9.5rem;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+}
+
+.ds-scale__sample {
+  color: var(--text-primary);
+}
+
+/* ——— Spacing ——— */
+.ds-spacing {
+  padding: var(--space-6);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-6);
+  align-items: flex-end;
+}
+
+.ds-spacing__col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.ds-spacing__bar-wrap {
+  width: 34px;
+  height: 56px;
+  display: flex;
+  align-items: flex-end;
+}
+
+.ds-spacing__bar {
+  width: 100%;
+  background: var(--tf-slate-900);
+}
+
+.ds-spacing__label {
+  font-family: var(--font-mono);
+  font-size: 8px;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+/* ——— Radii ——— */
+.ds-radii {
+  padding: var(--space-6);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-8);
+  align-items: flex-end;
+}
+
+.ds-radii__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.ds-radii__box {
+  width: 52px;
+  height: 52px;
+  background: var(--tf-slate-900);
+}
+
+.ds-radii__label {
+  font-family: var(--font-mono);
+  font-size: 8px;
+  color: var(--text-muted);
+  text-align: center;
+  line-height: 1.4;
+}
+
+/* ——— Key pair callout ——— */
+.ds-key-colors {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--border-strong);
+  margin-bottom: var(--space-6);
+}
+
+.ds-key-colors__cell {
+  padding: var(--space-8);
+  min-height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: var(--space-2);
+}
+
+.ds-key-colors__name {
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-action);
+  text-transform: uppercase;
+}
+
+.ds-key-colors__hex {
+  font-family: var(--font-mono);
+  font-size: var(--text-md);
+}
