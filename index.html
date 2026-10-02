@@ -3,336 +3,228 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-    <meta http-equiv="Pragma" content="no-cache" />
-    <meta http-equiv="Expires" content="0" />
     <title>Terraformer Design System</title>
     <link rel="stylesheet" href="css/styles.css" />
   </head>
   <body>
-    <header class="ds-topbar">
-      <p class="ds-topbar__wordmark">Terraformer</p>
-      <p class="ds-topbar__meta">Design system</p>
-    </header>
-
-    <main class="ds-page">
-      <header class="ds-intro">
-        <h1 class="ds-intro__title">Foundations</h1>
-        <p class="ds-intro__lede">
-          Typography, color, spacing, and radii from
-          <strong>terraformer/design/system</strong> — the same tokens the app uses
-          (<code>--tf-surface</code> chrome, <code>--tf-canvas</code> workspace,
-          <code>--tf-slate-900</code> node caps).
+    <div class="ds-wrap">
+      <header class="ds-header">
+        <h1 class="ds-header__title">Terraformer design system</h1>
+        <p class="ds-header__lede">
+          Reference for tokens used in
+          <a href="https://github.com/Overworldai/world-client/tree/main/terraformer/design/system"
+            >terraformer/design/system</a
+          >
+          and the app (<code>src/index.css</code>, <code>src/components/ui.ts</code>).
         </p>
-        <a
-          class="ds-intro__link"
-          href="https://github.com/Overworldai/world-client/tree/main/terraformer/design/system"
-          >Source in world-client</a
-        >
       </header>
 
       <section class="ds-section" id="colors">
         <h2 class="ds-section__title">Colors</h2>
-        <p class="ds-section__subtitle">
-          Near-monochrome tool palette — light grey chrome on a near-black canvas.
-        </p>
-
-        <div class="ds-key-colors">
-          <div
-            class="ds-key-colors__cell"
-            style="background: var(--tf-surface); color: var(--tf-ink)"
-          >
-            <span class="ds-key-colors__name">Chrome</span>
-            <span class="ds-key-colors__hex">#d9d9d9</span>
-            <span class="ds-key-colors__hex" style="font-size: var(--text-xs); opacity: 0.7"
-              >--tf-surface · --surface-chrome</span
-            >
+        <p class="ds-section__note">The two chrome surfaces the UI is built from.</p>
+        <div class="ds-colors">
+          <div class="ds-swatch ds-swatch--chrome">
+            <span class="ds-swatch__hex">#d9d9d9</span>
+            <span class="ds-swatch__role">Light chrome — panels, top bar, buttons, inputs on chrome</span>
+            <span class="ds-swatch__token">--tf-surface · --color-chrome · --surface-chrome</span>
           </div>
-          <div
-            class="ds-key-colors__cell"
-            style="background: var(--tf-slate-900); color: var(--tf-white-dim)"
-          >
-            <span class="ds-key-colors__name">Node / dark cap</span>
-            <span class="ds-key-colors__hex">#2a2a2a</span>
-            <span class="ds-key-colors__hex" style="font-size: var(--text-xs); opacity: 0.7"
-              >--tf-slate-900 · --surface-node-cap</span
-            >
-          </div>
-        </div>
-
-        <div class="ds-card">
-          <p class="ds-kicker">Greyscale ramp</p>
-          <div class="ds-ramp">
-            <div class="ds-ramp__swatch ds-ramp__swatch--dark" style="background: var(--tf-black)">
-              <span>#0d0d0d</span>
-            </div>
-            <div class="ds-ramp__swatch ds-ramp__swatch--dark" style="background: var(--tf-canvas)">
-              <span>#141414</span>
-            </div>
-            <div class="ds-ramp__swatch ds-ramp__swatch--dark" style="background: var(--tf-slate-900)">
-              <span>#2a2a2a</span>
-            </div>
-            <div class="ds-ramp__swatch ds-ramp__swatch--dark" style="background: var(--tf-slate-600)">
-              <span>#3f3f3f</span>
-            </div>
-            <div class="ds-ramp__swatch ds-ramp__swatch--dark" style="background: var(--tf-grey-500)">
-              <span>#6e6e6e</span>
-            </div>
-            <div class="ds-ramp__swatch ds-ramp__swatch--dark" style="background: var(--tf-grey-400)">
-              <span>#9a9a9a</span>
-            </div>
-            <div class="ds-ramp__swatch ds-ramp__swatch--light" style="background: var(--tf-grey-200)">
-              <span>#cccccc</span>
-            </div>
-            <div class="ds-ramp__swatch ds-ramp__swatch--light" style="background: var(--tf-surface)">
-              <span>#d9d9d9</span>
-            </div>
-            <div class="ds-ramp__swatch ds-ramp__swatch--light" style="background: var(--tf-grey-050)">
-              <span>#ededed</span>
-            </div>
-            <div
-              class="ds-ramp__swatch ds-ramp__swatch--light"
-              style="background: var(--tf-white); border-left: 1px solid var(--tf-grey-100)"
-            >
-              <span>#ffffff</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="ds-card" style="margin-top: var(--space-6)">
-          <p class="ds-kicker">Semantic surfaces</p>
-          <div class="ds-surfaces">
-            <div class="ds-surface ds-ramp__swatch--dark" style="background: var(--surface-canvas)">
-              <span>Canvas</span>
-              <span class="ds-surface__hex">#141414</span>
-            </div>
-            <div class="ds-surface ds-ramp__swatch--light" style="background: var(--surface-chrome)">
-              <span>Chrome</span>
-              <span class="ds-surface__hex">#d9d9d9</span>
-            </div>
-            <div class="ds-surface ds-ramp__swatch--light" style="background: var(--surface-raised)">
-              <span>Raised</span>
-              <span class="ds-surface__hex">#e6e6e6</span>
-            </div>
-            <div class="ds-surface ds-ramp__swatch--light" style="background: var(--surface-log)">
-              <span>Log bubble</span>
-              <span class="ds-surface__hex">#bcbcbc</span>
-            </div>
-            <div class="ds-surface ds-ramp__swatch--light" style="background: var(--surface-response)">
-              <span>Response</span>
-              <span class="ds-surface__hex">#f0f0f0</span>
-            </div>
-            <div class="ds-surface ds-ramp__swatch--dark" style="background: var(--surface-node-cap)">
-              <span>Node cap</span>
-              <span class="ds-surface__hex">#2a2a2a</span>
-            </div>
-            <div class="ds-surface ds-ramp__swatch--dark" style="background: var(--surface-wordmark)">
-              <span>Wordmark</span>
-              <span class="ds-surface__hex">#0d0d0d</span>
-            </div>
-            <div class="ds-surface ds-ramp__swatch--light" style="background: var(--surface-input)">
-              <span>Input</span>
-              <span class="ds-surface__hex">#ededed</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="ds-card ds-card--dark" style="margin-top: var(--space-6)">
-          <p class="ds-kicker">Connector palette (graph edges only)</p>
-          <div class="ds-edges">
-            <div class="ds-edge">
-              <div class="ds-edge__dot" style="background: var(--tf-edge-blue)"></div>
-              <span class="ds-edge__hex">#2f6be6</span>
-            </div>
-            <div class="ds-edge">
-              <div class="ds-edge__dot" style="background: var(--tf-edge-violet)"></div>
-              <span class="ds-edge__hex">#b026ff</span>
-            </div>
-            <div class="ds-edge">
-              <div class="ds-edge__dot" style="background: var(--tf-edge-green)"></div>
-              <span class="ds-edge__hex">#22a06b</span>
-            </div>
-            <div class="ds-edge">
-              <div class="ds-edge__dot" style="background: var(--tf-edge-amber)"></div>
-              <span class="ds-edge__hex">#e0872a</span>
-            </div>
-            <div class="ds-edge">
-              <div class="ds-edge__dot" style="background: var(--tf-edge-rose)"></div>
-              <span class="ds-edge__hex">#e05a7d</span>
-            </div>
-            <div class="ds-edge">
-              <div class="ds-edge__dot" style="background: var(--tf-edge-teal)"></div>
-              <span class="ds-edge__hex">#12aab0</span>
-            </div>
+          <div class="ds-swatch ds-swatch--node">
+            <span class="ds-swatch__hex">#2a2a2a</span>
+            <span class="ds-swatch__role">Dark caption — scene node title bar on the graph</span>
+            <span class="ds-swatch__token">--tf-slate-900 · --color-nodecap · --surface-node-cap</span>
           </div>
         </div>
       </section>
 
       <section class="ds-section" id="typography">
         <h2 class="ds-section__title">Typography</h2>
-        <p class="ds-section__subtitle">Small, dense type — 8px–15px scale.</p>
+        <p class="ds-section__note">
+          Two faces ship with Terraformer (<code>public/fonts/</code>). Display mono is
+          <strong>Fragment Mono</strong> in code (<code>--font-display</code>) — not Commit
+          Mono (Stream uses Commit Mono separately).
+        </p>
 
-        <div class="ds-card">
-          <p class="ds-kicker">Families</p>
-          <div class="ds-type-block">
-            <p class="ds-type-block__tag">Overused Grotesk · --font-sans · UI chrome</p>
-            <p class="ds-type-block__sample ds-type-block__sample--sans">Publish, export, author</p>
-          </div>
-          <div class="ds-type-block">
-            <p class="ds-type-block__tag">Fragment Mono · --font-mono-display · panel headings</p>
-            <p class="ds-type-block__sample ds-type-block__sample--display">Inside ship</p>
-          </div>
-          <div class="ds-type-block">
-            <p class="ds-type-block__tag">Platform mono · --font-mono · canvas readouts</p>
-            <p class="ds-type-block__sample ds-type-block__sample--mono">
-              goes into the ocean · 0:42 / 1:30
-            </p>
-          </div>
+        <div class="ds-typeface">
+          <p class="ds-typeface__name">Overused Grotesk · --font-sans</p>
+          <p class="ds-typeface__sample ds-typeface__sample--sans">Publish · export · panel body</p>
+          <p class="ds-typeface__use">
+            All UI chrome: panel copy, buttons, chat bubbles, suggest chips, fields.
+          </p>
         </div>
 
-        <div class="ds-card" style="margin-top: var(--space-6)">
-          <p class="ds-kicker">Scale</p>
-          <div class="ds-scale">
-            <div class="ds-scale__row">
-              <span class="ds-scale__token">--text-lg · 15px</span>
-              <span
-                class="ds-scale__sample"
-                style="font-size: 15px; font-family: var(--font-mono-display)"
-                >Panel heading</span
-              >
-            </div>
-            <div class="ds-scale__row">
-              <span class="ds-scale__token">--text-md · 13px</span>
-              <span class="ds-scale__sample" style="font-size: 13px">Body / wordmark base</span>
-            </div>
-            <div class="ds-scale__row">
-              <span class="ds-scale__token">--text-base · 12px</span>
-              <span class="ds-scale__sample" style="font-size: 12px">Action buttons, textarea</span>
-            </div>
-            <div class="ds-scale__row">
-              <span class="ds-scale__token">--text-sm · 11px</span>
-              <span class="ds-scale__sample" style="font-size: 11px">Log &amp; response bubbles</span>
-            </div>
-            <div class="ds-scale__row">
-              <span class="ds-scale__token">--text-cond · 10.5px</span>
-              <span
-                class="ds-scale__sample"
-                style="font-size: 10.5px; font-family: var(--font-mono)"
-                >Connector conditions</span
-              >
-            </div>
-            <div class="ds-scale__row">
-              <span class="ds-scale__token">--text-xs · 10px</span>
-              <span class="ds-scale__sample" style="font-size: 10px">Suggest chips, timers</span>
-            </div>
-            <div class="ds-scale__row">
-              <span class="ds-scale__token">--text-2xs · 8px</span>
-              <span
-                class="ds-scale__sample"
-                style="font-size: 8px; font-family: var(--font-mono)"
-                >Scene node labels</span
-              >
-            </div>
-          </div>
+        <div class="ds-typeface">
+          <p class="ds-typeface__name">Fragment Mono · --font-display · --font-mono-display</p>
+          <p class="ds-typeface__sample ds-typeface__sample--mono">What happens next?</p>
+          <p class="ds-typeface__use">
+            Panel headings, inspector section labels, pause/play overlays — anywhere
+            <code>font-display</code> / <code>panelTitle</code> is used.
+          </p>
         </div>
 
-        <div class="ds-card" style="margin-top: var(--space-6)">
-          <p class="ds-kicker">Letter-spacing (chrome caps)</p>
-          <div class="ds-scale">
-            <p style="margin: 0; font-size: var(--text-base); letter-spacing: var(--tracking-wordmark); text-transform: uppercase">
-              Wordmark · 0.14em
-            </p>
-            <p style="margin: var(--space-4) 0 0; font-size: var(--text-base); letter-spacing: var(--tracking-action); text-transform: uppercase">
-              Export · publish · 0.12em
-            </p>
-            <p style="margin: var(--space-4) 0 0; font-size: var(--text-xs); letter-spacing: var(--tracking-enter); text-transform: uppercase">
-              Enter · undo · 0.08em
-            </p>
-          </div>
-        </div>
-      </section>
+        <h3 class="ds-section__title" style="font-size: 13px; margin-top: 20px">Font weights</h3>
+        <table class="ds-table">
+          <thead>
+            <tr>
+              <th>Weight</th>
+              <th>Face</th>
+              <th>Where</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>400 (Book)</td>
+              <td>Overused Grotesk</td>
+              <td>Default UI text (<code>--weight-regular</code>); log/response bubble copy</td>
+            </tr>
+            <tr>
+              <td>500 (Medium)</td>
+              <td>Overused Grotesk</td>
+              <td>
+                Wordmark in top bar (<code>font-medium tracking-[0.14em]</code>); chrome action
+                buttons (<code>actionButton</code> · <code>font-medium</code>); design-system
+                <code>Button</code> wordmark weight
+              </td>
+            </tr>
+            <tr>
+              <td>400</td>
+              <td>Fragment Mono</td>
+              <td>
+                Panel titles (<code>panelTitle</code> · <code>font-normal</code> · 15px);
+                section labels at 10px with <code>tracking-[0.12em]</code>
+              </td>
+            </tr>
+          </tbody>
+        </table>
 
-      <section class="ds-section" id="spacing">
-        <h2 class="ds-section__title">Spacing</h2>
-        <p class="ds-section__subtitle">Compact chrome rhythm · --space-1 through --space-10</p>
-        <div class="ds-card">
-          <div class="ds-spacing">
-            <div class="ds-spacing__col">
-              <div class="ds-spacing__bar-wrap">
-                <div class="ds-spacing__bar" style="height: 2px"></div>
-              </div>
-              <span class="ds-spacing__label">1 · 2px</span>
-            </div>
-            <div class="ds-spacing__col">
-              <div class="ds-spacing__bar-wrap">
-                <div class="ds-spacing__bar" style="height: 4px"></div>
-              </div>
-              <span class="ds-spacing__label">2 · 4px</span>
-            </div>
-            <div class="ds-spacing__col">
-              <div class="ds-spacing__bar-wrap">
-                <div class="ds-spacing__bar" style="height: 8px"></div>
-              </div>
-              <span class="ds-spacing__label">4 · 8px</span>
-            </div>
-            <div class="ds-spacing__col">
-              <div class="ds-spacing__bar-wrap">
-                <div class="ds-spacing__bar" style="height: 12px"></div>
-              </div>
-              <span class="ds-spacing__label">6 · 12px</span>
-            </div>
-            <div class="ds-spacing__col">
-              <div class="ds-spacing__bar-wrap">
-                <div class="ds-spacing__bar" style="height: 16px"></div>
-              </div>
-              <span class="ds-spacing__label">8 · 16px</span>
-            </div>
-            <div class="ds-spacing__col">
-              <div class="ds-spacing__bar-wrap">
-                <div class="ds-spacing__bar" style="height: 20px"></div>
-              </div>
-              <span class="ds-spacing__label">10 · 20px</span>
-            </div>
+        <h3 class="ds-section__title" style="font-size: 13px; margin-top: 20px">Type sizes</h3>
+        <p class="ds-section__note">From <code>tokens/typography.css</code> — the app runs small.</p>
+        <div class="ds-scale">
+          <div class="ds-scale__row">
+            <span class="ds-scale__meta">15px · --text-lg</span>
+            <span class="ds-scale__sample" style="font-family: var(--font-mono-display); font-size: 15px"
+              >Panel heading</span
+            >
+          </div>
+          <div class="ds-scale__row">
+            <span class="ds-scale__meta">13px · --text-md</span>
+            <span class="ds-scale__sample" style="font-size: 13px">Wordmark / body base</span>
+          </div>
+          <div class="ds-scale__row">
+            <span class="ds-scale__meta">12px · --text-base</span>
+            <span class="ds-scale__sample" style="font-size: 12px">Actions, composer textarea</span>
+          </div>
+          <div class="ds-scale__row">
+            <span class="ds-scale__meta">11px · --text-sm</span>
+            <span class="ds-scale__sample" style="font-size: 11px">Log &amp; response bubbles</span>
+          </div>
+          <div class="ds-scale__row">
+            <span class="ds-scale__meta">10px · --text-xs</span>
+            <span class="ds-scale__sample" style="font-size: 10px">Suggest chips, section labels</span>
           </div>
         </div>
       </section>
 
-      <section class="ds-section" id="radii">
-        <h2 class="ds-section__title">Corner radii</h2>
-        <p class="ds-section__subtitle">Square by default — only small controls round.</p>
-        <div class="ds-card">
-          <div class="ds-radii">
-            <div class="ds-radii__item">
-              <div class="ds-radii__box" style="border-radius: var(--radius-none)"></div>
-              <span class="ds-radii__label">none · 0<br />chrome, panels</span>
-            </div>
-            <div class="ds-radii__item">
-              <div class="ds-radii__box" style="border-radius: var(--radius-xs)"></div>
-              <span class="ds-radii__label">xs · 2px</span>
-            </div>
-            <div class="ds-radii__item">
-              <div class="ds-radii__box" style="border-radius: var(--radius-sm)"></div>
-              <span class="ds-radii__label">sm · 3px</span>
-            </div>
-            <div class="ds-radii__item">
-              <div class="ds-radii__box" style="border-radius: var(--radius-md)"></div>
-              <span class="ds-radii__label">md · 6px</span>
-            </div>
-            <div class="ds-radii__item">
-              <div class="ds-radii__box" style="border-radius: var(--radius-pill)"></div>
-              <span class="ds-radii__label">pill · 8.5px</span>
+      <section class="ds-section" id="padding">
+        <h2 class="ds-section__title">Text padding</h2>
+        <p class="ds-section__note">
+          Insets taken from <code>design/system/uploads/terraformer-tile-prototype.html</code>,
+          <code>components/panel/Panel.jsx</code>, <code>ChatBubble.jsx</code>,
+          <code>Button.jsx</code>, and <code>ui.ts</code> — not invented.
+        </p>
+
+        <div class="ds-pad-spec">
+          <div class="ds-pad-spec__label">
+            Panel header
+            <span>padding: 12px 14px 10px · Panel.jsx</span>
+          </div>
+          <div class="ds-pad-spec__demo ds-pad-spec__demo--panel-head">
+            <h3>What happens next?</h3>
+          </div>
+        </div>
+
+        <div class="ds-pad-spec">
+          <div class="ds-pad-spec__label">
+            Panel body (between messages)
+            <span>padding: 14px; gap: 14px · Panel.jsx / prototype .panel-body</span>
+          </div>
+          <div class="ds-pad-spec__demo ds-pad-spec__demo--panel-body">
+            <div class="ds-pad-spec__demo ds-pad-spec__demo--log" style="margin: 0">System log line</div>
+            <div class="ds-pad-spec__demo ds-pad-spec__demo--resp">User line</div>
+          </div>
+        </div>
+
+        <div class="ds-pad-spec">
+          <div class="ds-pad-spec__label">
+            Log bubble
+            <span>padding: 9px 11px · ChatBubble log / prototype .log</span>
+          </div>
+          <div class="ds-pad-spec__demo ds-pad-spec__demo--panel-body" style="padding-top: 14px">
+            <div class="ds-pad-spec__demo ds-pad-spec__demo--log" style="margin: 0">
+              Added Seaside Headstone · connected by explore the cliffs.
             </div>
           </div>
         </div>
-      </section>
 
-      <p
-        class="ds-intro__lede"
-        style="margin-top: var(--space-10); font-size: var(--text-xs); color: var(--tf-grey-500)"
-      >
-        Foundations only — no citations, footnotes, or bibliography. Page revision
-        2026-10-02-foundation.
-      </p>
-    </main>
+        <div class="ds-pad-spec">
+          <div class="ds-pad-spec__label">
+            Response bubble
+            <span>padding: 8px 12px · ChatBubble response / prototype .resp</span>
+          </div>
+          <div class="ds-pad-spec__demo ds-pad-spec__demo--panel-body">
+            <div class="ds-pad-spec__demo ds-pad-spec__demo--resp">add or remix.</div>
+          </div>
+        </div>
+
+        <div class="ds-pad-spec">
+          <div class="ds-pad-spec__label">
+            Suggest chip
+            <span>padding: 6px 10px · prototype .suggests .s</span>
+          </div>
+          <div class="ds-pad-spec__demo ds-pad-spec__demo--panel-body">
+            <span class="ds-pad-spec__demo--suggest">remix this scene</span>
+          </div>
+        </div>
+
+        <div class="ds-pad-spec">
+          <div class="ds-pad-spec__label">
+            Composer textarea
+            <span>padding: 12px 12px 34px · prototype .panel-input textarea</span>
+          </div>
+          <div class="ds-pad-spec__demo ds-pad-spec__demo--composer">
+            Describe a scene, or remix this one…
+          </div>
+        </div>
+
+        <div class="ds-pad-spec">
+          <div class="ds-pad-spec__label">
+            Top bar action
+            <span>padding: 0 18px; height: 34px · Button action variant</span>
+          </div>
+          <div class="ds-pad-spec__demo ds-pad-spec__demo--panel-body">
+            <span class="ds-pad-spec__demo--action">Export</span>
+          </div>
+        </div>
+
+        <div class="ds-pad-spec">
+          <div class="ds-pad-spec__label">
+            Text button (playrail)
+            <span>padding: 8px 16px · Button text variant</span>
+          </div>
+          <div class="ds-pad-spec__demo ds-pad-spec__demo--panel-body">
+            <span class="ds-pad-spec__demo--text-btn">Play from here</span>
+          </div>
+        </div>
+
+        <div class="ds-pad-spec">
+          <div class="ds-pad-spec__label">
+            Inspector field
+            <span>padding: 6px 8px · ui.ts field (py-1.5 px-2)</span>
+          </div>
+          <div class="ds-pad-spec__demo ds-pad-spec__demo--panel-body">
+            <span class="ds-pad-spec__demo--field">Scene name</span>
+          </div>
+        </div>
+      </section>
+    </div>
   </body>
 </html>
